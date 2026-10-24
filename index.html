@@ -363,4 +363,424 @@
         moduleGroup: "6",
         moduleTitle: "Module 8: HR & Admin Communication",
         visual: "Nurse discussing roster schedule with unit manager.",
-        informalPrompt: "switch night
+        informalPrompt: "switch night shift",
+        instruction: "Select ALL 2-4 word formal terms for 'switch night shift':",
+        options: [
+          { text: "shift rotation swap", isCorrect: true },
+          { text: "mutual shift exchange", isCorrect: true },
+          { text: "official incident report", isCorrect: false, reason: "Wrong form: Safety error" },
+          { text: "worker compensation claim", isCorrect: false, reason: "Wrong form: Injury claim" }
+        ]
+      },
+      {
+        id: 9,
+        moduleGroup: "6",
+        moduleTitle: "Module 9: Pediatric Care",
+        visual: "Mother holding an infant running a high fever.",
+        informalPrompt: "running high fever",
+        instruction: "Select ALL 2-4 word formal terms for 'running high fever':",
+        options: [
+          { text: "acute pediatric pyrexia", isCorrect: true },
+          { text: "febrile spike episode", isCorrect: true },
+          { text: "normotensive body temperature", isCorrect: false, reason: "Wrong state: Normal temp" },
+          { text: "hypothermic temperature drop", isCorrect: false, reason: "Opposite state: Abnormally low" }
+        ]
+      },
+      {
+        id: 10,
+        moduleGroup: "6",
+        moduleTitle: "Module 10: Critical Care Escalation",
+        visual: "Cardiac monitor displaying alarming irregular flatline rhythm.",
+        informalPrompt: "stopped breathing completely",
+        instruction: "Select ALL 2-4 word formal terms for 'stopped breathing completely':",
+        options: [
+          { text: "acute respiratory arrest", isCorrect: true },
+          { text: "pulmonary apnea episode", isCorrect: true },
+          { text: "transient hyperventilation state", isCorrect: false, reason: "Wrong state: Fast breathing" },
+          { text: "mild exertional dyspnea", isCorrect: false, reason: "Wrong state: Shortness of breath" }
+        ]
+      },
+      {
+        id: 11,
+        moduleGroup: "11",
+        moduleTitle: "Module 11: Isolation Protocols",
+        visual: "Yellow precaution sign posted on isolation room door.",
+        informalPrompt: "putting on gown",
+        instruction: "Select ALL 2-4 word formal terms for 'putting on gown':",
+        options: [
+          { text: "donning protective equipment", isCorrect: true },
+          { text: "donning yellow gown", isCorrect: true },
+          { text: "doffing isolation gear", isCorrect: false, reason: "Opposite action: Taking off" },
+          { text: "terminal bleach cleaning", isCorrect: false, reason: "Wrong action: Room sanitation" }
+        ]
+      },
+      {
+        id: 12,
+        moduleGroup: "11",
+        moduleTitle: "Module 12: Discharge Planning",
+        visual: "Nurse reviewing printed discharge booklet with family.",
+        informalPrompt: "getting around home",
+        instruction: "Select ALL 2-4 word formal terms for 'getting around home':",
+        options: [
+          { text: "activities of daily living", isCorrect: true },
+          { text: "independent home ambulation", isCorrect: true },
+          { text: "complete bedbound status", isCorrect: false, reason: "Opposite state: Cannot walk" },
+          { text: "acute surgical admission", isCorrect: false, reason: "Wrong phase: Hospital intake" }
+        ]
+      },
+      {
+        id: 13,
+        moduleGroup: "11",
+        moduleTitle: "Module 13: Perioperative Care",
+        visual: "Pre-op holding bay with knee surgery site mark.",
+        informalPrompt: "nothing by mouth",
+        instruction: "Select ALL 2-4 word formal terms for 'nothing by mouth':",
+        options: [
+          { text: "nil per os", isCorrect: true },
+          { text: "strict NPO status", isCorrect: true },
+          { text: "unrestricted fluid intake", isCorrect: false, reason: "Opposite rule: Can drink" },
+          { text: "post-operative diet advance", isCorrect: false, reason: "Wrong phase: After surgery" }
+        ]
+      },
+      {
+        id: 14,
+        moduleGroup: "11",
+        moduleTitle: "Module 14: Mental Health Care",
+        visual: "Quiet consultation room in psychiatric unit.",
+        informalPrompt: "really shaken up",
+        instruction: "Select ALL 2-4 word formal terms for 'really shaken up':",
+        options: [
+          { text: "psychomotor agitation state", isCorrect: true },
+          { text: "acute emotional distress", isCorrect: true },
+          { text: "resting sedative state", isCorrect: false, reason: "Opposite state: Calm/sleepy" },
+          { text: "catatonic withdrawal phase", isCorrect: false, reason: "Wrong psychiatric symptom" }
+        ]
+      },
+      {
+        id: 15,
+        moduleGroup: "11",
+        moduleTitle: "Module 15: Oncology Care",
+        visual: "Outpatient infusion room with IV chemo pump running.",
+        informalPrompt: "leaking chemo drug",
+        instruction: "Select ALL 2-4 word formal terms for 'leaking chemo drug':",
+        options: [
+          { text: "vesicant extravasation incident", isCorrect: true },
+          { text: "chemotherapy drug infiltration", isCorrect: true },
+          { text: "patent intravenous lumen", isCorrect: false, reason: "Opposite state: Line working fine" },
+          { text: "subcutaneous heparin flush", isCorrect: false, reason: "Wrong drug: Blood thinner" }
+        ]
+      },
+      {
+        id: 16,
+        moduleGroup: "16",
+        moduleTitle: "Module 16: Emergency Triage",
+        visual: "Paramedic rolling stretcher into ER Trauma Bay.",
+        informalPrompt: "super low pressure",
+        instruction: "Select ALL 2-4 word formal terms for 'super low pressure':",
+        options: [
+          { text: "severe arterial hypotension", isCorrect: true },
+          { text: "hypotensive crisis state", isCorrect: true },
+          { text: "hypertensive crisis spike", isCorrect: false, reason: "Opposite state: Super high BP" },
+          { text: "normotensive resting pressure", isCorrect: false, reason: "Wrong state: Completely normal" }
+        ]
+      },
+      {
+        id: 17,
+        moduleGroup: "16",
+        moduleTitle: "Module 17: Community Health",
+        visual: "Public health clinic immunization desk.",
+        informalPrompt: "bug spreading around",
+        instruction: "Select ALL 2-4 word formal terms for 'bug spreading around':",
+        options: [
+          { text: "infectious outbreak cluster", isCorrect: true },
+          { text: "communicable disease transmission", isCorrect: true },
+          { text: "localized aseptic inflammation", isCorrect: false, reason: "Wrong concept: Non-contagious" },
+          { text: "isolated sterile site", isCorrect: false, reason: "Wrong concept: Free of bugs" }
+        ]
+      },
+      {
+        id: 18,
+        moduleGroup: "16",
+        moduleTitle: "Module 18: Home Healthcare",
+        visual: "Home nurse checking sacral wound in living room.",
+        informalPrompt: "tailbone bed sore",
+        instruction: "Select ALL 2-4 word formal terms for 'tailbone bed sore':",
+        options: [
+          { text: "sacral pressure injury", isCorrect: true },
+          { text: "sacral decubitus ulcer", isCorrect: true },
+          { text: "anterior chest laceration", isCorrect: false, reason: "Wrong site: Front chest" },
+          { text: "superficial dermal abrasion", isCorrect: false, reason: "Wrong depth: Minor scrape" }
+        ]
+      },
+      {
+        id: 19,
+        moduleGroup: "16",
+        moduleTitle: "Module 19: Geriatric Nursing",
+        visual: "Care facility dayroom with elderly resident sitting.",
+        informalPrompt: "getting mixed up",
+        instruction: "Select ALL 2-4 word formal terms for 'getting mixed up':",
+        options: [
+          { text: "cognitive impairment episode", isCorrect: true },
+          { text: "sundowning confusion phase", isCorrect: true },
+          { text: "alert orientation status", isCorrect: false, reason: "Opposite state: Clear mind" },
+          { text: "acute motor paralysis", isCorrect: false, reason: "Wrong symptom: Muscle loss" }
+        ]
+      },
+      {
+        id: 20,
+        moduleGroup: "16",
+        moduleTitle: "Module 20: Palliative Care",
+        visual: "Dimly lit hospice private room with soft music.",
+        informalPrompt: "uneven breathing pattern",
+        instruction: "Select ALL 2-4 word formal terms for 'uneven breathing pattern':",
+        options: [
+          { text: "Cheyne-Stokes respiration pattern", isCorrect: true },
+          { text: "apneic breathing cycle", isCorrect: true },
+          { text: "eupneic breathing baseline", isCorrect: false, reason: "Wrong state: Normal breathing" },
+          { text: "stridor airway obstruction", isCorrect: false, reason: "Wrong sound: High pitched noise" }
+        ]
+      }
+    ];
+
+    // --- GAME STATE ---
+    let currentScore = 0;
+    let currentStreak = 0;
+    let currentCaseIndex = 0;
+    let filteredScenarios = [...microPhraseScenarios];
+    let selectedIndices = new Set();
+
+    // --- DOM ELEMENTS ---
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const streakDisplay = document.getElementById('streakDisplay');
+    const caseProgressDisplay = document.getElementById('caseProgressDisplay');
+    const badgeCategory = document.getElementById('badgeCategory');
+    const visualDescription = document.getElementById('visualDescription');
+    const informalPrompt = document.getElementById('informalPrompt');
+    const promptContainer = document.getElementById('promptContainer');
+    const promptAudioBtn = document.getElementById('promptAudioBtn');
+    const challengeInstruction = document.getElementById('challengeInstruction');
+    const instructionAudioBtn = document.getElementById('instructionAudioBtn');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const submitBtn = document.getElementById('submitBtn');
+    const feedbackBanner = document.getElementById('feedbackBanner');
+    const feedbackText = document.getElementById('feedbackText');
+    const feedbackSubtext = document.getElementById('feedbackSubtext');
+    const nextCaseBtn = document.getElementById('nextCaseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const soundToggle = document.getElementById('soundToggle');
+    const moduleSelect = document.getElementById('moduleSelect');
+    const mainContainer = document.getElementById('mainContainer');
+
+    // --- GAME LOGIC ---
+    function initGame() {
+      currentScore = 0;
+      currentStreak = 0;
+      currentCaseIndex = 0;
+      filterScenarios();
+      updateHeaderStats();
+      loadScenario(currentCaseIndex);
+    }
+
+    function filterScenarios() {
+      const val = moduleSelect.value;
+      if (val === 'all') {
+        filteredScenarios = [...microPhraseScenarios];
+      } else {
+        filteredScenarios = microPhraseScenarios.filter(s => s.moduleGroup === val);
+      }
+      currentCaseIndex = 0;
+    }
+
+    function updateHeaderStats() {
+      scoreDisplay.textContent = currentScore;
+      streakDisplay.textContent = `${currentStreak}🔥`;
+      caseProgressDisplay.textContent = `${currentCaseIndex + 1} / ${filteredScenarios.length}`;
+    }
+
+    function loadScenario(index) {
+      if (index >= filteredScenarios.length) {
+        showFinalVictoryScreen();
+        return;
+      }
+
+      const caseData = filteredScenarios[index];
+      selectedIndices.clear();
+      feedbackBanner.classList.add('hidden');
+      submitBtn.disabled = false;
+
+      badgeCategory.textContent = caseData.moduleTitle;
+      visualDescription.textContent = `📷 Setting: ${caseData.visual}`;
+      informalPrompt.textContent = `"${caseData.informalPrompt}"`;
+      challengeInstruction.textContent = caseData.instruction;
+
+      // Speak informal statement automatically using Male Voice
+      tts.speak(caseData.informalPrompt, 'male');
+
+      optionsContainer.innerHTML = '';
+      caseData.options.forEach((opt, optIdx) => {
+        const card = document.createElement('div');
+        card.className = `option-card bg-slate-900/90 border-2 border-slate-700 hover:border-amber-500/80 p-4 rounded-xl cursor-pointer transition transform active:scale-98 flex items-center justify-between gap-3 text-slate-200 text-sm md:text-base select-none group`;
+        card.dataset.index = optIdx;
+
+        card.innerHTML = `
+          <div class="flex items-center gap-3 flex-grow">
+            <div class="checkbox-box w-6 h-6 rounded-md border-2 border-slate-500 flex items-center justify-center flex-shrink-0 transition">
+              <span class="check-mark hidden text-amber-400 font-bold text-xs">✓</span>
+            </div>
+            <span class="font-semibold text-option-label group-hover:text-amber-200 transition">${opt.text}</span>
+          </div>
+          <button class="tts-option-btn bg-slate-800 hover:bg-slate-700 text-teal-300 p-2 rounded-lg border border-slate-600 transition flex-shrink-0 text-sm flex items-center gap-1" title="Listen with Female Voice">
+            👩🔊
+          </button>
+        `;
+
+        // Card Selection or Word Audio Trigger
+        card.addEventListener('click', (e) => {
+          if (!e.target.closest('.tts-option-btn')) {
+            toggleOptionSelect(optIdx, card);
+            // Also speak option when clicked for interactive learning (Female voice)
+            tts.speak(opt.text, 'female');
+          }
+        });
+
+        // Dedicated Option Audio Button (Female voice)
+        const ttsBtn = card.querySelector('.tts-option-btn');
+        ttsBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          tts.speak(opt.text, 'female');
+        });
+
+        optionsContainer.appendChild(card);
+      });
+
+      updateHeaderStats();
+    }
+
+    function toggleOptionSelect(index, cardElement) {
+      const checkbox = cardElement.querySelector('.checkbox-box');
+      const checkMark = cardElement.querySelector('.check-mark');
+
+      if (selectedIndices.has(index)) {
+        selectedIndices.delete(index);
+        cardElement.classList.remove('border-amber-400', 'bg-amber-950/40');
+        cardElement.classList.add('border-slate-700');
+        checkbox.classList.remove('border-amber-400', 'bg-amber-900');
+        checkMark.classList.add('hidden');
+      } else {
+        selectedIndices.add(index);
+        cardElement.classList.remove('border-slate-700');
+        cardElement.classList.add('border-amber-400', 'bg-amber-950/40');
+        checkbox.classList.add('border-amber-400', 'bg-amber-900');
+        checkMark.classList.remove('hidden');
+      }
+    }
+
+    // --- MALE PROMPT AUDIO LISTENERS ---
+    const speakPromptMale = () => {
+      const caseData = filteredScenarios[currentCaseIndex];
+      tts.speak(caseData.informalPrompt, 'male');
+    };
+    promptContainer.addEventListener('click', speakPromptMale);
+    promptAudioBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      speakPromptMale();
+    });
+
+    // --- FEMALE INSTRUCTION AUDIO LISTENER ---
+    instructionAudioBtn.addEventListener('click', () => {
+      const caseData = filteredScenarios[currentCaseIndex];
+      tts.speak(caseData.instruction, 'female');
+    });
+
+    // --- EVALUATION & SCORING LOGIC (+100 / -100) ---
+    submitBtn.addEventListener('click', () => {
+      const caseData = filteredScenarios[currentCaseIndex];
+      let isPerfect = true;
+      let mistakes = [];
+
+      caseData.options.forEach((opt, idx) => {
+        const wasSelected = selectedIndices.has(idx);
+        if (opt.isCorrect && !wasSelected) {
+          isPerfect = false;
+          mistakes.push(`Missed valid term: "${opt.text}"`);
+        } else if (!opt.isCorrect && wasSelected) {
+          isPerfect = false;
+          mistakes.push(`Selected distractor: "${opt.text}" (${opt.reason})`);
+        }
+      });
+
+      submitBtn.disabled = true;
+      feedbackBanner.classList.remove('hidden');
+
+      if (isPerfect && selectedIndices.size > 0) {
+        currentScore += 100;
+        currentStreak++;
+        soundFX.playCorrect();
+        tts.speak("Excellent! Perfect formal evaluation match.", 'female');
+
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 75, spread: 70, origin: { y: 0.7 } });
+        }
+
+        feedbackBanner.className = "p-4 rounded-xl border border-emerald-500/80 bg-emerald-950/80 text-emerald-200 text-center shadow-lg";
+        feedbackText.innerHTML = `🎉 PERFECT DUAL-VOICE MATCH! (+100 SCORE)`;
+        feedbackSubtext.textContent = "You accurately mapped the bedside phrase to its formal medical terms!";
+
+      } else {
+        currentScore -= 100;
+        currentStreak = 0;
+        soundFX.playIncorrect();
+        tts.speak("Incorrect selection. Pay attention to clinical distractors.", 'female');
+
+        mainContainer.classList.add('bam-effect');
+        setTimeout(() => mainContainer.classList.remove('bam-effect'), 500);
+
+        feedbackBanner.className = "p-4 rounded-xl border border-rose-500/80 bg-rose-950/90 text-rose-200 text-center shadow-lg";
+        feedbackText.innerHTML = `💥 BAM! INCORRECT SELECTION (-100 SCORE)`;
+        feedbackSubtext.innerHTML = mistakes.length > 0 ? mistakes.join('<br>') : "You must select at least one valid formal term!";
+      }
+
+      updateHeaderStats();
+    });
+
+    nextCaseBtn.addEventListener('click', () => {
+      currentCaseIndex++;
+      loadScenario(currentCaseIndex);
+    });
+
+    resetBtn.addEventListener('click', () => {
+      initGame();
+    });
+
+    moduleSelect.addEventListener('change', () => {
+      initGame();
+    });
+
+    soundToggle.addEventListener('click', () => {
+      soundFX.enabled = !soundFX.enabled;
+      soundToggle.textContent = soundFX.enabled ? "🔊 Audio FX: ON" : "🔇 Audio FX: OFF";
+    });
+
+    function showFinalVictoryScreen() {
+      optionsContainer.innerHTML = '';
+      informalPrompt.textContent = "🏆 AUDIO MATRIX COMPLETED!";
+      visualDescription.textContent = "20-Module Micro-Phrase Register & Dual-Voice Pronunciation Mastery Achieved";
+      challengeInstruction.textContent = "Final Training Summary:";
+      
+      tts.speak("Congratulations! You have completed the Spoken Nursing Care Plan Audio Matrix.", 'female');
+
+      feedbackBanner.classList.remove('hidden');
+      feedbackBanner.className = "p-6 rounded-2xl border border-amber-500/80 bg-slate-900/95 text-amber-300 text-center shadow-2xl";
+      feedbackText.innerHTML = `FINAL MATRIX SCORE: ${currentScore} POINTS`;
+      feedbackSubtext.innerHTML = `
+        <p class="text-sm text-slate-300 mt-2">You have successfully mastered translating micro-phrases and pronunciation across all 20 clinical scenarios!</p>
+        <p class="text-xs text-amber-400 mt-2">Curriculum & Assessment Framework by <strong>Giyono Asfarrasyid</strong></p>
+      `;
+      nextCaseBtn.style.display = 'none';
+      submitBtn.style.display = 'none';
+    }
+
+    initGame();
+  </script>
+</body>
+</html>
