@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spoken Nursing Care Plan: Full Interactive Dual-Voice Audio Matrix</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    @keyframes bamShake {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      15% { transform: translate(-12px, -12px) rotate(-3deg); }
+      30% { transform: translate(12px, 12px) rotate(3deg); }
+      45% { transform: translate(-10px, 10px) rotate(-2deg); }
+      60% { transform: translate(10px, -10px) rotate(2deg); }
+      75% { transform: translate(-5px, 0px) rotate(-1deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    .bam-effect {
+      animation: bamShake 0.45s ease-in-out;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #09121d 0%, #111e2e 50%, #082032 100%);
+    }
+  </style>
+</head>
+<body class="gradient-bg text-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- TOP HEADER -->
+  <header class="bg-slate-900/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40 px-4 py-3 shadow-lg">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-3">
+      <div>
+        <h1 class="text-xl md:text-2xl font-extrabold text-amber-400 tracking-wide">
+          🎙️ Dual-Voice Micro-Phrase Register Matrix
+        </h1>
+        <p class="text-xs text-slate-400">Curriculum Author: <span class="text-teal-300 font-semibold">Giyono Asfarrasyid</span></p>
+      </div>
+
+      <!-- SCOREBOARD & STATS -->
+      <div class="flex items-center gap-4 bg-slate-800/90 px-4 py-2 rounded-xl border border-slate-700">
+        <div class="text-center">
+          <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider">Score</span>
+          <span id="scoreDisplay" class="text-2xl font-black text-amber-400">0</span>
+        </div>
+        <div class="h-8 w-px bg-slate-700"></div>
+        <div class="text-center">
+          <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider">Streak</span>
+          <span id="streakDisplay" class="text-2xl font-black text-emerald-400">0🔥</span>
+        </div>
+        <div class="h-8 w-px bg-slate-700"></div>
+        <div class="text-center">
+          <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider">Scenario</span>
+          <span id="caseProgressDisplay" class="text-sm font-bold text-sky-300">1 / 20</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main id="mainContainer" class="flex-grow max-w-5xl w-full mx-auto p-4 md:p-6 flex flex-col gap-6">
+
+    <!-- GAME CONTROLS & MODULE SELECTION -->
+    <section class="bg-slate-800/60 rounded-2xl p-4 border border-slate-700/80 flex flex-wrap justify-between items-center gap-3">
+      <div class="flex items-center gap-2">
+        <label for="moduleSelect" class="text-sm font-semibold text-slate-300">Module Filter:</label>
+        <select id="moduleSelect" class="bg-slate-900 border border-slate-600 text-amber-300 text-sm rounded-lg p-2 focus:ring-2 focus:ring-amber-400 outline-none">
+          <option value="all">All 20 Modules (Full Audio Pronunciation Matrix)</option>
+          <option value="1">Modules 1-5: Assessment, Vitals, ISBAR, Meds</option>
+          <option value="6">Modules 6-10: Treatments, Handover, HR, Peds, ICU</option>
+          <option value="11">Modules 11-15: Isolation, Discharge, Surgery, Psych, Onco</option>
+          <option value="16">Modules 16-20: ER, Community, Home, Geri, Palliative</option>
+        </select>
+      </div>
+
+      <div class="flex gap-2">
+        <button id="resetBtn" class="bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs px-3 py-2 rounded-lg transition font-medium">
+          🔄 Reset Matrix
+        </button>
+        <button id="soundToggle" class="bg-amber-700 hover:bg-amber-600 text-white text-xs px-3 py-2 rounded-lg transition font-medium">
+          🔊 Audio FX: ON
+        </button>
+      </div>
+    </section>
+
+    <!-- PROMPT & SCENARIO CARD -->
+    <section class="bg-slate-800/90 rounded-2xl p-6 border border-slate-700 shadow-xl relative overflow-hidden">
+      <div class="flex items-center justify-between mb-3">
+        <span id="badgeCategory" class="bg-amber-900/80 text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase border border-amber-500/40">
+          Module Phase
+        </span>
+        <span id="badgeTargetType" class="bg-teal-900/80 text-teal-300 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/40">
+          👨 Male Voice (Bedside) / 👩 Female Voice (Formal Options)
+        </span>
+      </div>
+
+      <!-- VISUAL DESCRIPTION -->
+      <div id="visualDescription" class="italic text-xs text-slate-400 mb-4 bg-slate-900/60 p-3 rounded-lg border-l-4 border-amber-500">
+        "Visual description of clinical setting..."
+      </div>
+
+      <!-- INFORMAL MICRO-PHRASE PROMPT (MALE VOICE) -->
+      <div class="mb-4">
+        <h2 class="text-xs uppercase font-extrabold text-slate-400 tracking-wider mb-1">
+          👨 Informal Bedside Phrase (Click text or 🔊 button to listen):
+        </h2>
+        <div class="flex items-center justify-between bg-slate-950/80 p-4 rounded-xl border border-slate-700/80 cursor-pointer hover:border-amber-400/60 transition group" id="promptContainer">
+          <div id="informalPrompt" class="text-xl md:text-2xl font-black text-amber-300 tracking-wide group-hover:text-amber-200">
+            "Informal Phrase"
+          </div>
+          <button id="promptAudioBtn" class="bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 border border-amber-500/50 p-2.5 rounded-lg transition text-lg flex items-center gap-1.5">
+            👨🔊 <span class="text-xs font-bold hidden md:inline">Listen (Male)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- INSTRUCTION WITH AUDIO -->
+      <div class="bg-teal-950/40 border border-teal-700/50 p-3 rounded-xl mb-4 flex items-center justify-between">
+        <p id="challengeInstruction" class="text-sm font-semibold text-teal-200">
+          ⚠️ Select ALL formal medical terms (2-4 words) that match this exact meaning:
+        </p>
+        <button id="instructionAudioBtn" class="bg-teal-500/20 hover:bg-teal-500/40 text-teal-300 border border-teal-500/50 p-1.5 px-3 rounded-lg text-xs font-bold transition flex items-center gap-1 flex-shrink-0">
+          👩🔊 Read
+        </button>
+      </div>
+
+      <!-- MULTI-CHOICE OPTIONS MATRIX (FEMALE VOICE) -->
+      <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3 my-4">
+        <!-- Options injected dynamically -->
+      </div>
+
+      <!-- SUBMIT ACTION BUTTON -->
+      <div class="mt-6 flex justify-end">
+        <button id="submitBtn" class="w-full md:w-auto bg-gradient-to-r from-amber-500 to-emerald-500 hover:from-amber-400 hover:to-emerald-400 text-slate-950 font-black text-lg px-8 py-3.5 rounded-xl shadow-lg transition transform active:scale-95 disabled:opacity-50">
+          SUBMIT FORMAL EVALUATION (+100 / -100) 🎯
+        </button>
+      </div>
+    </section>
+
+    <!-- FEEDBACK OVERLAY / RESULT BOX -->
+    <div id="feedbackBanner" class="hidden p-4 rounded-xl border text-center font-bold text-lg transition duration-300">
+      <div id="feedbackText"></div>
+      <div id="feedbackSubtext" class="text-xs font-normal mt-1"></div>
+      <button id="nextCaseBtn" class="mt-3 bg-slate-900 text-white text-sm px-5 py-2 rounded-lg border border-slate-600 hover:bg-slate-800 transition">
+        Next Audio Scenario ➔
+      </button>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 border-t border-slate-800 p-4 text-center text-xs text-slate-500">
+    <p>Spoken English for Nursing Care Plan Training System • Full Interactive Text-to-Speech Matrix</p>
+    <p class="mt-1">Content & Pedagogical Framework © Giyono Asfarrasyid</p>
+  </footer>
+
+  <!-- AUDIO SYNTHESIZER & GAME SCRIPT -->
+  <script>
+    // --- TEXT TO SPEECH (TTS) CONTROLLER WITH GENDER SELECTION ---
+    class TextToSpeech {
+      constructor() {
+        this.synth = window.speechSynthesis;
+        this.voices = [];
+        this.initVoices();
+      }
+
+      initVoices() {
+        if (!this.synth) return;
+        const updateVoices = () => {
+          this.voices = this.synth.getVoices();
+        };
+        updateVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+          speechSynthesis.onvoiceschanged = updateVoices;
+        }
+      }
+
+      getVoice(gender = 'female') {
+        if (!this.voices || this.voices.length === 0) return null;
+        
+        // Find English voices matching requested gender
+        const englishVoices = this.voices.filter(v => v.lang.startsWith('en'));
+        if (gender === 'male') {
+          return englishVoices.find(v => v.name.includes('Male') || v.name.includes('David') || v.name.includes('George') || v.name.includes('James')) || englishVoices[0];
+        } else {
+          return englishVoices.find(v => v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Hazel') || v.name.includes('Samantha') || v.name.includes('Victoria')) || englishVoices[1] || englishVoices[0];
+        }
+      }
+
+      speak(text, gender = 'female', pitchMultiplier = 1.0) {
+        if (!this.synth) return;
+        this.synth.cancel(); // Stop current speech
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.88; // Clear clinical pace
+        
+        const voice = this.getVoice(gender);
+        if (voice) {
+          utterance.voice = voice;
+        }
+        
+        // Pitch fallback if voice synthesis lacks distinct male/female voices
+        utterance.pitch = (gender === 'male') ? 0.85 : 1.25;
+
+        this.synth.speak(utterance);
+      }
+    }
+
+    const tts = new TextToSpeech();
+
+    // --- WEB AUDIO API SYNTHESIZER FOR GAME SOUNDS ---
+    class SoundEffects {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+      }
+      playCorrect() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + (idx * 0.08));
+          gain.gain.setValueAtTime(0.15, now + (idx * 0.08));
+          gain.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.08) + 0.3);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now + (idx * 0.08));
+          osc.stop(now + (idx * 0.08) + 0.35);
+        });
+      }
+      playIncorrect() {
+        if (!this.enabled) return;
+        this.init();
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.exponentialRampToValueAtTime(60, now + 0.4);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.45);
+      }
+    }
+
+    const soundFX = new SoundEffects();
+
+    // --- COMPREHENSIVE 20-MODULE MICRO-PHRASE SCENARIOS ---
+    const microPhraseScenarios = [
+      {
+        id: 1,
+        moduleGroup: "1",
+        moduleTitle: "Module 1: Intake & History Taking",
+        visual: "Patient sitting up in bed holding their abdomen.",
+        informalPrompt: "heavy chest pressure",
+        instruction: "Select ALL 2-4 word formal clinical terms matching 'heavy chest pressure':",
+        options: [
+          { text: "retrosternal chest tightness", isCorrect: true },
+          { text: "substernal pressure sensation", isCorrect: true },
+          { text: "bilateral chest congestion", isCorrect: false, reason: "Wrong symptom: Lungs" },
+          { text: "acute abdominal colic", isCorrect: false, reason: "Wrong site: Abdomen" }
+        ]
+      },
+      {
+        id: 2,
+        moduleGroup: "1",
+        moduleTitle: "Module 2: Vital Signs & Reporting",
+        visual: "Electronic vital signs monitor displaying BP 82/50 and HR 128.",
+        informalPrompt: "heart racing fast",
+        instruction: "Select ALL 2-4 word formal medical terms for 'heart racing fast':",
+        options: [
+          { text: "acute sinus tachycardia", isCorrect: true },
+          { text: "elevated heart rate", isCorrect: true },
+          { text: "resting sinus bradycardia", isCorrect: false, reason: "Opposite state: Slow heart rate" },
+          { text: "febrile temperature spike", isCorrect: false, reason: "Wrong parameter: Fever" }
+        ]
+      },
+      {
+        id: 3,
+        moduleGroup: "1",
+        moduleTitle: "Module 3: Nursing Care Planning",
+        visual: "Nurse listening to lung sound rattling with a stethoscope.",
+        informalPrompt: "gunk in lungs",
+        instruction: "Select ALL 2-4 word formal medical terms for 'gunk in lungs':",
+        options: [
+          { text: "retained tracheobronchial secretions", isCorrect: true },
+          { text: "coarse lung rhonchi", isCorrect: true },
+          { text: "purulent wound exudate", isCorrect: false, reason: "Wrong site: Surgical wound" },
+          { text: "impaired peripheral perfusion", isCorrect: false, reason: "Wrong site: Blood vessels" }
+        ]
+      },
+      {
+        id: 4,
+        moduleGroup: "1",
+        moduleTitle: "Module 4: ISBAR Physician Consult",
+        visual: "Nurse calling physician regarding surgical site bleeding.",
+        informalPrompt: "bandage soaking through",
+        instruction: "Select ALL 2-4 word formal terms for 'bandage soaking through':",
+        options: [
+          { text: "active surgical hemorrhage", isCorrect: true },
+          { text: "saturated surgical dressing", isCorrect: true },
+          { text: "serous dressing exudate", isCorrect: false, reason: "Wrong fluid type: Clear drainage" },
+          { text: "superficial skin erythema", isCorrect: false, reason: "Wrong finding: Redness" }
+        ]
+      },
+      {
+        id: 5,
+        moduleGroup: "1",
+        moduleTitle: "Module 5: Medication Safety",
+        visual: "Patient hesitating to take morning blood pressure pill.",
+        informalPrompt: "refusing his pills",
+        instruction: "Select ALL 2-4 word formal terms for 'refusing his pills':",
+        options: [
+          { text: "documented medication refusal", isCorrect: true },
+          { text: "patient declined dose", isCorrect: true },
+          { text: "adverse drug reaction", isCorrect: false, reason: "Wrong concept: Side effect" },
+          { text: "incorrect route error", isCorrect: false, reason: "Wrong concept: Admin error" }
+        ]
+      },
+      {
+        id: 6,
+        moduleGroup: "6",
+        moduleTitle: "Module 6: Delivering Treatments",
+        visual: "Treatment cart prepared with sterile gloving and saline wipes.",
+        informalPrompt: "squeaky clean wound",
+        instruction: "Select ALL 2-4 word formal terms for 'squeaky clean wound':",
+        options: [
+          { text: "sterile wound field", isCorrect: true },
+          { text: "aseptic dressing environment", isCorrect: true },
+          { text: "purulent infection site", isCorrect: false, reason: "Opposite state: Infected" },
+          { text: "necrotic wound tissue", isCorrect: false, reason: "Opposite state: Dead tissue" }
+        ]
+      },
+      {
+        id: 7,
+        moduleGroup: "6",
+        moduleTitle: "Module 7: Patient Evaluation",
+        visual: "Nurse checking oxygen saturation levels on bedside monitor.",
+        informalPrompt: "breathing much easier",
+        instruction: "Select ALL 2-4 word formal terms for 'breathing much easier':",
+        options: [
+          { text: "improved respiratory status", isCorrect: true },
+          { text: "stabilized oxygen saturation", isCorrect: true },
+          { text: "acute respiratory distress", isCorrect: false, reason: "Opposite state: Severe dyspnea" },
+          { text: "severe arterial hypoxia", isCorrect: false, reason: "Opposite state: Low oxygen" }
+        ]
+      },
+      {
+        id: 8,
+        moduleGroup: "6",
+        moduleTitle: "Module 8: HR & Admin Communication",
+        visual: "Nurse discussing roster schedule with unit manager.",
+        informalPrompt: "switch night
